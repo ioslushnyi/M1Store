@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import { type Product } from "./types/product";
+import { useState } from "react";
 import {
   Box,
   Container,
@@ -7,11 +6,10 @@ import {
   CssBaseline,
   ThemeProvider,
 } from "@mui/material";
-import Catalog from "./components/catalog/Catalog";
-import NavBar from "./layout/NavBar";
+import NavBar from "./components/layout/NavBar";
+import { Outlet } from "react-router";
 
 function App() {
-  const [products, setProducts] = useState<Product[]>([]);
   const [darkMode, setDarkMode] = useState(false);
   const paletteType = darkMode ? "dark" : "light";
 
@@ -19,19 +17,10 @@ function App() {
     palette: {
       mode: paletteType,
       background: {
-        default: paletteType === "dark" ? "#121212" : "#eaeaea",
+        default: paletteType === "dark" ? "#121212" : "#e8f8fe",
       },
     },
   });
-
-  useEffect(() => {
-    fetch("https://localhost:5150/api/products")
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        setProducts(data);
-      });
-  }, []);
 
   return (
     <ThemeProvider theme={theme}>
@@ -40,11 +29,11 @@ function App() {
       <Box
         sx={{
           minHeight: "100vh",
-          background: darkMode ? "#121212" : "#eaeaea",
+          background: darkMode ? "#121212" : "#e8f8fe",
         }}
       >
         <Container sx={{ mt: 12, maxWidth: "xl" }}>
-          <Catalog products={products} />
+          <Outlet />
         </Container>
       </Box>
     </ThemeProvider>

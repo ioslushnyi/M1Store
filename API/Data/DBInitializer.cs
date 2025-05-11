@@ -27,7 +27,7 @@ public class DBInitializer
                 Name = "Cheap Piece of Wood",
                 Price = 12,
                 Description = "Your first guitar",
-                PictureUrl = "images/products/cheap-piece-of-wood-1.jpg",
+                PictureUrl = "/images/products/cheap-piece-of-wood-1.jpg",
                 Type = "Guitar",
                 Brand = "Sp. z o.o. VINTAGE Classics Customs Łódź"
             },
@@ -36,7 +36,7 @@ public class DBInitializer
                 Price = 123,
                 Name = "Ultimate Shredder",
                 Description = "Your keys to the Lamborghini!",
-                PictureUrl = "images/products/ultimate-shredder-1.jpg",
+                PictureUrl = "/images/products/ultimate-shredder-1.jpg",
                 Type = "Guitar",
                 Brand = "Sp. z o.o. VINTAGE Classics Customs Łódź"
             },
@@ -45,7 +45,7 @@ public class DBInitializer
                 Price = 3213213,
                 Name = "Pies Lol",
                 Description = "The REAL VINTAGE CLASSICS Custom built by our Customer SATISFACTION Team",
-                PictureUrl = "images/products/pies-lol-1.jpg",
+                PictureUrl = "/images/products/pies-lol-1.jpg",
                 Type = "Guitar",
                 Brand = "Sp. z o.o. VINTAGE Classics Customs Łódź"
             },
@@ -54,7 +54,7 @@ public class DBInitializer
                 Price = 1222,
                 Name = "Beetlejuice",
                 Description = "Perfect for both left-handed and right-handed players.",
-                PictureUrl = "images/products/beetlejuice-1.jpg",
+                PictureUrl = "/images/products/beetlejuice-1.jpg",
                 Type = "Bass Guitar",
                 Brand = "Sp. z o.o. VINTAGE Classics Customs Łódź"
             },
@@ -63,7 +63,7 @@ public class DBInitializer
                 Price = 12453,
                 Name = "Ooh Cool Lele",
                 Description = "Add one annoying whining voice to it and you'll be a star on Reels!",
-                PictureUrl = "images/products/ooh-cool-lele-1.jpg",
+                PictureUrl = "/images/products/ooh-cool-lele-1.jpg",
                 Type = "Accessories",
                 Brand = "Sp. z o.o. VINTAGE Classics Customs Łódź"
             },
