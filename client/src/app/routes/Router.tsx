@@ -5,7 +5,7 @@ import Catalog from "../components/catalog/Catalog";
 import ProductDetails from "../components/catalog/ProductDetails";
 import About from "../components/about/About";
 
-const router = createBrowserRouter([
+export const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
@@ -17,5 +17,3 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-
-export default router;

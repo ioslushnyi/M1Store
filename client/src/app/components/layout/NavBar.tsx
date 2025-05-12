@@ -10,13 +10,10 @@ import {
   Typography,
 } from "@mui/material";
 import { NavLink } from "react-router";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { selectDarkMode, toggleDarkMode } from "../../store/uiSlice";
 
-type Props = {
-  darkMode: boolean;
-  setDarkMode: (darkMode: boolean) => void;
-};
-
-export default function NavBar({ darkMode, setDarkMode }: Props) {
+export default function NavBar() {
   const navBarLinks = {
     mid: [
       { title: "home", path: "/home" },
@@ -41,9 +38,9 @@ export default function NavBar({ darkMode, setDarkMode }: Props) {
     },
   };
 
-  const handleDarkModeToggle = () => {
-    setDarkMode(!darkMode);
-  };
+  const dispatch = useAppDispatch();
+  const isDarkMode = useAppSelector(selectDarkMode);
+
   return (
     <AppBar position="fixed">
       <Toolbar
@@ -57,8 +54,12 @@ export default function NavBar({ darkMode, setDarkMode }: Props) {
           <Typography component={NavLink} to="/" variant="h6" sx={linkStyles}>
             M1Shop
           </Typography>
-          <IconButton onClick={handleDarkModeToggle}>
-            {darkMode ? <DarkMode /> : <LightMode sx={{ color: "yellow" }} />}
+          <IconButton
+            onClick={() => {
+              dispatch(toggleDarkMode());
+            }}
+          >
+            {isDarkMode ? <DarkMode /> : <LightMode sx={{ color: "yellow" }} />}
           </IconButton>
         </Box>
 

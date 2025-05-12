@@ -13,7 +13,9 @@ export default function ProductList({ products }: Props) {
         display: "flex",
         flexWrap: "wrap",
         gap: 3,
-        justifyContent: "center",
+        maxWidth: 300 * 3 + 24 * 2,
+        justifyContent: "flex-start",
+        alignItems: "self-start",
       }}
     >
       {products.map((product) => (

@@ -1,9 +1,7 @@
-using System;
-using System.Security.Cryptography.X509Certificates;
-using API.Entities;
+using Server.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace API.Data;
+namespace Server.Data;
 
 public class DBInitializer
 {

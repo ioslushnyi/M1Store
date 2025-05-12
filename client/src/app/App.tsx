@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   Box,
   Container,
@@ -8,11 +7,13 @@ import {
 } from "@mui/material";
 import NavBar from "./components/layout/NavBar";
 import { Outlet } from "react-router";
+import { useAppSelector } from "./store/hooks";
+import { selectDarkMode } from "./store/uiSlice";
 
 function App() {
-  const [darkMode, setDarkMode] = useState(false);
-  const paletteType = darkMode ? "dark" : "light";
-
+  //const [darkMode, setDarkMode] = useState(false);
+  const isDarkMode = useAppSelector(selectDarkMode);
+  const paletteType = isDarkMode ? "dark" : "light";
   const theme = createTheme({
     palette: {
       mode: paletteType,
@@ -25,14 +26,21 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <NavBar darkMode={darkMode} setDarkMode={setDarkMode} />
+      <NavBar />
       <Box
         sx={{
           minHeight: "100vh",
-          background: darkMode ? "#121212" : "#e8f8fe",
+          background: isDarkMode ? "#121212" : "#e8f8fe",
         }}
       >
-        <Container sx={{ mt: 12, maxWidth: "xl" }}>
+        <Container
+          sx={{
+            mt: 12,
+            maxWidth: "xl",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
           <Outlet />
         </Container>
       </Box>

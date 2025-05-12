@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-import type { Product } from "../../types/product";
 import { useParams } from "react-router";
 import Grid from "@mui/material/Grid";
 import {
@@ -13,18 +11,13 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { useGetProductDetailsQuery } from "../../api/catalogAPI";
 
 export default function ProductDetails() {
   const { id } = useParams();
-  const [product, setProduct] = useState<Product | null>(null);
-  useEffect(() => {
-    fetch(`https://localhost:5150/api/products/${id}`)
-      .then((response) => response.json())
-      .then((data) => setProduct(data))
-      .catch((err) => console.log(err));
-  }, [id]);
+  const { data: product, isLoading } = useGetProductDetailsQuery(id ? id : "0");
 
-  if (!product) return <div>Loading...</div>;
+  if (!product || isLoading) return <div>Loading...</div>;
 
   const productDetails = [
     { label: "Description", value: product.description },
