@@ -6,7 +6,7 @@ namespace Server.Controllers;
 
 [Route("api/[controller]")]
     [ApiController]
-public class ExceptionController: BaseApiController
+public class ErrorController: BaseApiController
 {
     [HttpGet("notfound")]
     public ActionResult GetNotFound()

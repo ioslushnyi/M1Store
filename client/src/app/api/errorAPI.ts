@@ -7,19 +7,19 @@ export const errorAPI = createApi({
   baseQuery: baseQueryWithErrorHandling,
   endpoints: (build) => ({
     getNotFoundError: build.query<object, void>({
-      query: () => "exception/notfound",
+      query: () => "error/notfound",
     }),
     getBadRequestError: build.query<object, void>({
-      query: () => "exception/badrequest",
+      query: () => "error/badrequest",
     }),
     getUnauthorizedError: build.query<object, void>({
-      query: () => "exception/unauthorized",
+      query: () => "error/unauthorized",
     }),
     getValidationError: build.query<object, void>({
-      query: () => "exception/validationerror",
+      query: () => "error/validationerror",
     }),
     getServerError: build.query<object, void>({
-      query: () => "exception/servererror",
+      query: () => "error/servererror",
     }),
   }),
 });
