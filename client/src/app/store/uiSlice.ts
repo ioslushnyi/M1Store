@@ -27,12 +27,19 @@ export const uiSlice = createSlice({
       localStorage.setItem("useDarkMode", JSON.stringify(!state.isDarkMode));
       state.isDarkMode = !state.isDarkMode;
     },
+    startLoading: (state) => {
+      state.isLoading = true;
+    },
+    stopLoading: (state) => {
+      state.isLoading = false;
+    },
   },
 });
 
-export const { toggleDarkMode } = uiSlice.actions;
+export const { toggleDarkMode, startLoading, stopLoading } = uiSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
-export const selectDarkMode = (state: RootState) => state.ui.isDarkMode;
+export const darkModeSelector = (state: RootState) => state.ui.isDarkMode;
+export const isLoadingSelector = (state: RootState) => state.ui.isLoading;
 
 export default uiSlice.reducer;

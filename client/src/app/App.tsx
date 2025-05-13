@@ -8,11 +8,11 @@ import {
 import NavBar from "./components/layout/NavBar";
 import { Outlet } from "react-router";
 import { useAppSelector } from "./store/hooks";
-import { selectDarkMode } from "./store/uiSlice";
+import { darkModeSelector } from "./store/uiSlice";
 
 function App() {
   //const [darkMode, setDarkMode] = useState(false);
-  const isDarkMode = useAppSelector(selectDarkMode);
+  const isDarkMode = useAppSelector(darkModeSelector);
   const paletteType = isDarkMode ? "dark" : "light";
   const theme = createTheme({
     palette: {

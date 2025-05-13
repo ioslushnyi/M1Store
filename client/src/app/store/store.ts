@@ -1,16 +1,18 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { catalogAPI } from "./../api/catalogAPI";
 import { uiSlice } from "./uiSlice";
+import { errorAPI } from "../api/errorAPI";
 
 // ...
 
 export const store = configureStore({
   reducer: {
-    [catalogAPI.reducerPath]: catalogAPI.reducer,
     [uiSlice.reducerPath]: uiSlice.reducer,
+    [errorAPI.reducerPath]: errorAPI.reducer,
+    [catalogAPI.reducerPath]: catalogAPI.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(catalogAPI.middleware),
+    getDefaultMiddleware().concat(errorAPI.middleware, catalogAPI.middleware),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

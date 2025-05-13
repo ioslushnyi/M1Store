@@ -4,6 +4,7 @@ import {
   Badge,
   Box,
   IconButton,
+  LinearProgress,
   List,
   ListItem,
   Toolbar,
@@ -11,7 +12,11 @@ import {
 } from "@mui/material";
 import { NavLink } from "react-router";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { selectDarkMode, toggleDarkMode } from "../../store/uiSlice";
+import {
+  darkModeSelector,
+  isLoadingSelector,
+  toggleDarkMode,
+} from "../../store/uiSlice";
 
 export default function NavBar() {
   const navBarLinks = {
@@ -39,7 +44,8 @@ export default function NavBar() {
   };
 
   const dispatch = useAppDispatch();
-  const isDarkMode = useAppSelector(selectDarkMode);
+  const isDarkMode = useAppSelector(darkModeSelector);
+  const isLoading = useAppSelector(isLoadingSelector);
 
   return (
     <AppBar position="fixed">
@@ -92,6 +98,11 @@ export default function NavBar() {
           </List>
         </Box>
       </Toolbar>
+      {isLoading && (
+        <Box sx={{ width: "100%" }}>
+          <LinearProgress color="secondary" />
+        </Box>
+      )}
     </AppBar>
   );
 }
