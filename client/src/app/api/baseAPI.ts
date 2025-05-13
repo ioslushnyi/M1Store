@@ -6,9 +6,11 @@ import {
 import { startLoading, stopLoading } from "../store/uiSlice";
 import { toast } from "react-toastify";
 
-type ErrorResponse = {
-  title: string;
-};
+// I hate TypeScript.
+type ErrorResponse =
+  | string
+  | { title: string }
+  | { tite: string; errors: string[] };
 
 const customBaseQuery = fetchBaseQuery({
   baseUrl: "https://localhost:5150/api",
@@ -31,7 +33,14 @@ export const baseQueryWithErrorHandling = async (
     const status = result.error.status;
     const data = result.error.data as ErrorResponse;
     console.log({ status, data });
-    toast.error(data.title);
+
+    if (typeof data === "string") {
+      toast.error(data);
+    } else if ("errors" in data) {
+      throw Object.values(data.errors).flat().join(", ");
+    } else {
+      toast.error(data.title);
+    }
   }
 
   return result;
