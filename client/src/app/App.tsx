@@ -11,7 +11,6 @@ import { useAppSelector } from "./store/hooks";
 import { darkModeSelector } from "./store/uiSlice";
 
 function App() {
-  //const [darkMode, setDarkMode] = useState(false);
   const isDarkMode = useAppSelector(darkModeSelector);
   const paletteType = isDarkMode ? "dark" : "light";
   const theme = createTheme({
