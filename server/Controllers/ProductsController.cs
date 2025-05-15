@@ -5,8 +5,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Server.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
     public class ProductsController(StoreContext context) : BaseApiController
     {
         [HttpGet]
