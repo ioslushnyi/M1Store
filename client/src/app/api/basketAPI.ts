@@ -1,6 +1,7 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { baseQueryWithErrorHandling } from "./baseAPI";
-import type { Basket } from "../types/basket";
+import { Item, type Basket } from "../types/basket";
+import type { Product } from "../types/product";
 
 // Define a service using a base URL and expected endpoints
 export const basketAPI = createApi({
@@ -10,15 +11,36 @@ export const basketAPI = createApi({
   endpoints: (build) => ({
     getBasket: build.query<Basket, void>({
       query: () => "basket",
+      providesTags: ["Basket"],
     }),
     addItemToBasket: build.mutation<
       Basket,
-      { productId: number; quantity: number }
+      { product: Product; quantity: number }
     >({
-      query: ({ productId, quantity }) => ({
-        url: `basket/item?productId=${productId}&quantity=${quantity}`,
+      query: ({ product, quantity }) => ({
+        url: `basket/item?productId=${product.id}&quantity=${quantity}`,
         method: "POST",
       }),
+      onQueryStarted: async (
+        { product, quantity },
+        { dispatch, queryFulfilled }
+      ) => {
+        const patchResult = dispatch(
+          basketAPI.util.updateQueryData("getBasket", undefined, (draft) => {
+            const existingItem = draft.items.find(
+              (item) => item.productId === product.id
+            );
+            if (existingItem) existingItem.quantity += quantity;
+            else draft.items.push(new Item(product, quantity));
+          })
+        );
+        try {
+          await queryFulfilled;
+        } catch (err) {
+          patchResult.undo();
+          console.log(err);
+        }
+      },
     }),
     removeItemFromBasket: build.mutation<
       Basket,
@@ -28,6 +50,30 @@ export const basketAPI = createApi({
         url: `basket/item?productId=${productId}&quantity=${quantity}`,
         method: "DELETE",
       }),
+      onQueryStarted: async (
+        { productId, quantity },
+        { dispatch, queryFulfilled }
+      ) => {
+        const patchResult = dispatch(
+          basketAPI.util.updateQueryData("getBasket", undefined, (draft) => {
+            const itemIndex = draft.items.findIndex(
+              (item) => item.productId === productId
+            );
+            if (itemIndex >= 0) {
+              draft.items[itemIndex].quantity -= quantity;
+              if (draft.items[itemIndex].quantity <= 0) {
+                draft.items.splice(itemIndex, 1);
+              }
+            }
+          })
+        );
+        try {
+          await queryFulfilled;
+        } catch (err) {
+          patchResult.undo();
+          console.log(err);
+        }
+      },
     }),
   }),
 });

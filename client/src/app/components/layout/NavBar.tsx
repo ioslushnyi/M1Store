@@ -17,6 +17,7 @@ import {
   isLoadingSelector,
   toggleDarkMode,
 } from "../../store/uiSlice";
+import { useGetBasketQuery } from "../../api/basketAPI";
 
 export default function NavBar() {
   const navBarLinks = {
@@ -46,6 +47,11 @@ export default function NavBar() {
   const dispatch = useAppDispatch();
   const isDarkMode = useAppSelector(darkModeSelector);
   const isLoading = useAppSelector(isLoadingSelector);
+  const { data: basket } = useGetBasketQuery();
+  const numberOfItemsInBasket =
+    (basket &&
+      basket.items.reduce((prev, current) => prev + current.quantity, 0)) ||
+    0;
 
   return (
     <AppBar position="fixed">
@@ -84,7 +90,7 @@ export default function NavBar() {
             size="large"
             sx={{ color: "inherit" }}
           >
-            <Badge badgeContent={4} color="secondary">
+            <Badge badgeContent={numberOfItemsInBasket} color="secondary">
               <ShoppingCart />
             </Badge>
           </IconButton>

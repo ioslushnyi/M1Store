@@ -86,7 +86,7 @@ public class DBInitializer
             new() {
                 Id = 8,
                 Price = 399999,
-                Name = "Star Trek Enterprize & Triax Bundle",
+                Name = "Enterprize & Triax Bundle",
                 Description = "Much before Captain Kirk's mission, Jonathan Archer leads the first starship, Enterprize. On their inter-galactic missions, the crew encounter several alien races and are exposed to new technologies...",
                 PictureUrl = "/images/products/enterprize-triax-bundle.jpg",
                 Type = "Guitar",

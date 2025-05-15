@@ -47,9 +47,7 @@ export default function ProductCard({ product }: Props) {
       <CardActions sx={{ justifyContent: "space-between" }}>
         <Button
           disabled={isLoading}
-          onClick={() =>
-            addItemToBasket({ productId: product.id, quantity: 1 })
-          }
+          onClick={() => addItemToBasket({ product, quantity: 1 })}
         >
           Add to cart
         </Button>
