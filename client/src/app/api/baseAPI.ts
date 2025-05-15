@@ -15,6 +15,7 @@ type ErrorResponse =
 
 const customBaseQuery = fetchBaseQuery({
   baseUrl: "https://localhost:5150/api",
+  credentials: "include",
 });
 
 const sleep = () => new Promise((resolve) => setTimeout(resolve, 1000));

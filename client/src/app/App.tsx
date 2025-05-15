@@ -36,8 +36,6 @@ function App() {
           sx={{
             mt: 12,
             maxWidth: "xl",
-            display: "flex",
-            justifyContent: "center",
           }}
         >
           <Outlet />

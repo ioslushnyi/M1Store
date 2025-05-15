@@ -6,6 +6,7 @@ import type { Basket } from "../types/basket";
 export const basketAPI = createApi({
   reducerPath: "basketAPI",
   baseQuery: baseQueryWithErrorHandling,
+  tagTypes: ["Basket"],
   endpoints: (build) => ({
     getBasket: build.query<Basket, void>({
       query: () => "basket",

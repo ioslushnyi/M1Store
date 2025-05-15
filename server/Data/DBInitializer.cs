@@ -23,47 +23,83 @@ public class DBInitializer
             new() {
                 Id = 1,
                 Name = "Cheap Piece of Wood",
-                Price = 12,
+                Price = 999,
                 Description = "Your first guitar",
-                PictureUrl = "/images/products/cheap-piece-of-wood-1.jpg",
+                PictureUrl = "/images/products/cheap-piece-of-wood.jpg",
                 Type = "Guitar",
-                Brand = "Sp. z o.o. VINTAGE Classics Customs Łódź"
+                Brand = "Januszex"
             },
             new() {
                 Id = 2,
-                Price = 123,
-                Name = "Ultimate Shredder",
+                Price = 49999,
+                Name = "Ultimate Shredder Unlimited",
                 Description = "Your keys to the Lamborghini!",
-                PictureUrl = "/images/products/ultimate-shredder-1.jpg",
+                PictureUrl = "/images/products/ultimate-shredder-unlimited.jpg",
                 Type = "Guitar",
-                Brand = "Sp. z o.o. VINTAGE Classics Customs Łódź"
+                Brand = "ANKH WARRIORS OF THE WORLD UNITED"
             },
             new() {
                 Id = 3,
-                Price = 3213213,
-                Name = "Pies Lol",
-                Description = "The REAL VINTAGE CLASSICS Custom built by our Customer SATISFACTION Team",
-                PictureUrl = "/images/products/pies-lol-1.jpg",
+                Price = 199999,
+                Name = "Old Money Blooze Rocker 2000",
+                Description = "The real VINTAGE CLASSIC CUSTOM built by our Customer S.A.T.I.S.F.A.C.T.I.O.N. Team",
+                PictureUrl = "/images/products/pies-lol.jpg",
                 Type = "Guitar",
-                Brand = "Sp. z o.o. VINTAGE Classics Customs Łódź"
+                Brand = "Sp. z o.o. VINTAGE CLASSIC CUSTOMS Łódź"
             },
             new() {
                 Id = 4,
-                Price = 1222,
-                Name = "Beetlejuice",
+                Price = 99999,
+                Name = "Beatlesjuice",
                 Description = "Perfect for both left-handed and right-handed players.",
-                PictureUrl = "/images/products/beetlejuice-1.jpg",
+                PictureUrl = "/images/products/beatlesjuice.jpg",
                 Type = "Bass Guitar",
-                Brand = "Sp. z o.o. VINTAGE Classics Customs Łódź"
+                Brand = "Sp. z o.o. VINTAGE Classic Customs Łódź"
             },
             new() {
                 Id = 5,
-                Price = 12453,
+                Price = 1999,
                 Name = "Ooh Cool Lele",
                 Description = "Add one annoying whining voice to it and you'll be a star on Reels!",
-                PictureUrl = "/images/products/ooh-cool-lele-1.jpg",
+                PictureUrl = "/images/products/ooh-cool-lele.jpg",
                 Type = "Accessories",
-                Brand = "Sp. z o.o. VINTAGE Classics Customs Łódź"
+                Brand = "Januszex"
+            },
+            new() {
+                Id = 6,
+                Price = 999999,
+                Name = "Star Ship Cruiser GT",
+                Description = "Fuel it with some hot atomic chords and you are ready to fly sky high! The Spaceman should have played this one!",
+                PictureUrl = "/images/products/star-ship-cruiser-gt.jpg",
+                Type = "Guitar",
+                Brand = "ANKH WARRIORS OF THE WORLD UNITED"
+            },
+            new() {
+                Id = 7,
+                Price = 499999,
+                Name = "Aquaman's Dream",
+                Description = "Sometimes you just get bored and need something exotic, you know what I mean?",
+                PictureUrl = "/images/products/aquamans-dream.jpg",
+                Type = "Guitar",
+                Brand = "Antique Treasure"
+            },
+            new() {
+                Id = 8,
+                Price = 399999,
+                Name = "Star Trek Enterprize & Triax Bundle",
+                Description = "Much before Captain Kirk's mission, Jonathan Archer leads the first starship, Enterprize. On their inter-galactic missions, the crew encounter several alien races and are exposed to new technologies...",
+                PictureUrl = "/images/products/enterprize-triax-bundle.jpg",
+                Type = "Guitar",
+                Brand = "ANKH WARRIORS OF THE WORLD UNITED"
+            },
+            new() {
+                Id = 9,
+                Price = 89999,
+                Name = "Surf Rocker",
+                Description = "Show up that muscular torso of yours and ride (or play) this oceanic beast!",
+                PictureUrl = "/images/products/surf-rocker.jpg",
+                Type = "Guitar",
+                Brand = "West Coast Customs"
             },
         };
 

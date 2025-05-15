@@ -12,12 +12,14 @@ import {
   Typography,
 } from "@mui/material";
 import { useGetProductDetailsQuery } from "../../api/catalogAPI";
+import IsLoading from "../layout/IsLoading";
 
 export default function ProductDetails() {
   const { id } = useParams();
   const { data: product, isLoading } = useGetProductDetailsQuery(id ? id : "0");
 
-  if (!product || isLoading) return <div>Loading...</div>;
+  if (!product || isLoading)
+    return <IsLoading text={"Loading product details..."} />;
 
   const productDetails = [
     { label: "Description", value: product.description },
@@ -39,7 +41,7 @@ export default function ProductDetails() {
         <Typography variant="h3">{product.name}</Typography>
 
         <Typography variant="h4" color="secondary">
-          ${(product.price / 2).toFixed(2)}
+          ${(product.price / 100).toFixed(2)}
         </Typography>
         <Divider sx={{ my: 2 }} />
         <TableContainer>
