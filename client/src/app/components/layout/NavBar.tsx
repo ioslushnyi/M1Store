@@ -20,6 +20,7 @@ import {
 import { useGetBasketQuery } from "../../api/basketAPI";
 
 export default function NavBar() {
+  console.log("navbar");
   const navBarLinks = {
     mid: [
       { title: "home", path: "/home" },

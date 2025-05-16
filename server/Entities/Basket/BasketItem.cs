@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Server.Entities;
+namespace Server.Entities.Basket;
 
 [Table("BasketItems")]
 public class BasketItem

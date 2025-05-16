@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import { useGetProductDetailsQuery } from "../../api/catalogAPI";
 import IsLoading from "../layout/IsLoading";
+import { formatPrice } from "../../utils/helpers";
 
 export default function ProductDetails() {
   const { id } = useParams();
@@ -41,7 +42,7 @@ export default function ProductDetails() {
         <Typography variant="h3">{product.name}</Typography>
 
         <Typography variant="h4" color="secondary">
-          ${(product.price / 100).toFixed(2)}
+          {formatPrice(product.price)}
         </Typography>
         <Divider sx={{ my: 2 }} />
         <TableContainer>

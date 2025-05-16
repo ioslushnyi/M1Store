@@ -2,6 +2,7 @@ import { Grid, Typography } from "@mui/material";
 import { useGetBasketQuery } from "../../api/basketAPI";
 import Basketitem from "./Basketitem";
 import IsLoading from "../layout/IsLoading";
+import OrderSummary from "../shared/OrderSummary";
 
 export default function Basket() {
   const { data: basket, isLoading } = useGetBasketQuery();
@@ -15,6 +16,9 @@ export default function Basket() {
         {basket.items.map((item) => (
           <Basketitem key={item.productId} item={item} />
         ))}
+      </Grid>
+      <Grid size={4}>
+        <OrderSummary basket={basket} />
       </Grid>
     </Grid>
   );

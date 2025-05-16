@@ -1,8 +1,13 @@
+import type { Discount } from "./discount";
 import type { Product } from "./product";
 
 export type Basket = {
   basketId: string;
   items: Item[];
+  discounts: Discount[];
+  totalPrice: number;
+  merchandizeTotalPrice: number;
+  shippingTotalPrice: number;
 };
 
 /**
@@ -25,17 +30,10 @@ export class Item {
   price: number;
 }
 */
-export class Item {
-  constructor(product: Product, quantity: number) {
-    this.productId = product.id;
-    this.product = product;
-    this.basePrice = product.price;
-    this.quantity = quantity;
-    this.price = this.basePrice * this.quantity;
-  }
+export type Item = {
   productId: number;
   product: Product;
   basePrice: number;
   price: number;
   quantity: number;
-}
+};

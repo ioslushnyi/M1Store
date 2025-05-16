@@ -1,4 +1,5 @@
 using Server.Entities;
+using Server.Entities.Basket;
 using Microsoft.EntityFrameworkCore;
 
 namespace Server.Data;

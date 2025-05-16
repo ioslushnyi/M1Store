@@ -5,6 +5,7 @@ import {
   useAddItemToBasketMutation,
   useRemoveItemFromBasketMutation,
 } from "../../api/basketAPI";
+import { formatPrice } from "../../utils/helpers";
 
 type Props = {
   item: Item;
@@ -42,10 +43,10 @@ export default function Basketitem({ item }: Props) {
 
           <Box display="flex" alignItems="center" gap={3}>
             <Typography sx={{ fontSize: "1.1rem" }}>
-              ${(item.product.price / 100).toFixed(2)} x {item.quantity}
+              {formatPrice(item.product.price)} x {item.quantity}
             </Typography>
             <Typography sx={{ fontSize: "1.1rem" }} color="secondary">
-              ${(item.price / 100).toFixed(2)}
+              {formatPrice(item.price)}
             </Typography>
           </Box>
 

@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Server.Data;
 using Server.DTOs;
-using Server.Entities;
+using Server.Entities.Basket;
 using Server.Extensions;
 
 namespace Server.Controllers;
@@ -15,7 +15,7 @@ public class BasketController(StoreContext context): BaseApiController
         var basket = await RetrieveBasketFromDB();
         
         if (basket == null) return NoContent();
-
+        basket.Calculate();
         return basket.ToDto();
     }
     [HttpPost("item")]
@@ -61,14 +61,13 @@ public class BasketController(StoreContext context): BaseApiController
     }
     private Basket CreateBasket()
     {
-        var basketId = Guid.NewGuid().ToString();
+        var basket = BasketMgr.CreateBasket();
         var cookieOptions = new CookieOptions
         {
             IsEssential = true,
             Expires = DateTime.UtcNow.AddDays(30)
         };
-        Response.Cookies.Append("basketId", basketId, cookieOptions);
-        var basket = new Basket() {BasketId = basketId};
+        Response.Cookies.Append("basketId", basket.BasketId, cookieOptions);
         context.Baskets.Add(basket);
         return basket;
     }

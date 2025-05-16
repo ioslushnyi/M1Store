@@ -1,6 +1,6 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { baseQueryWithErrorHandling } from "./baseAPI";
-import { Item, type Basket } from "../types/basket";
+import { type Basket, type Item } from "../types/basket";
 import type { Product } from "../types/product";
 
 // Define a service using a base URL and expected endpoints
@@ -25,7 +25,8 @@ export const basketAPI = createApi({
         { product, quantity },
         { dispatch, queryFulfilled }
       ) => {
-        const patchResult = dispatch(
+        // Increase item total and item quantity to update the basket item view right away
+        const optimisticPatch = dispatch(
           basketAPI.util.updateQueryData("getBasket", undefined, (draft) => {
             const existingItem = draft.items.find(
               (item) => item.productId === product.id
@@ -34,13 +35,29 @@ export const basketAPI = createApi({
               existingItem.quantity += quantity;
               existingItem.price =
                 existingItem.basePrice * existingItem.quantity;
-            } else draft.items.push(new Item(product, quantity));
+            } else {
+              const item: Item = {
+                productId: product.id,
+                product: product,
+                quantity: quantity,
+                basePrice: product.price,
+                price: product.price * quantity,
+              };
+              draft.items.push(item);
+            }
           })
         );
         try {
-          await queryFulfilled;
+          const { data: updatedBasket } = await queryFulfilled;
+          // Wait for basket update result from the server and save recalculated basket to the state
+          dispatch(
+            basketAPI.util.updateQueryData("getBasket", undefined, (draft) => {
+              Object.assign(draft, updatedBasket);
+            })
+          );
         } catch (err) {
-          patchResult.undo();
+          // Revert optimistic item totals & quantity update in case of failure
+          optimisticPatch.undo();
           console.log(err);
         }
       },
@@ -57,7 +74,9 @@ export const basketAPI = createApi({
         { productId, quantity },
         { dispatch, queryFulfilled }
       ) => {
-        const patchResult = dispatch(
+        // Increase item total and item quantity to update the basket item view right away
+
+        const optimisticPatch = dispatch(
           basketAPI.util.updateQueryData("getBasket", undefined, (draft) => {
             const itemIndex = draft.items.findIndex(
               (item) => item.productId === productId
@@ -74,9 +93,16 @@ export const basketAPI = createApi({
           })
         );
         try {
-          await queryFulfilled;
+          const { data: updatedBasket } = await queryFulfilled;
+          // Wait for basket update result from the server and save recalculated basket to the state
+          dispatch(
+            basketAPI.util.updateQueryData("getBasket", undefined, (draft) => {
+              Object.assign(draft, updatedBasket);
+            })
+          );
         } catch (err) {
-          patchResult.undo();
+          // Revert optimistic item totals & quantity update in case of failure
+          optimisticPatch.undo();
           console.log(err);
         }
       },

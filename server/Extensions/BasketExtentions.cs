@@ -1,6 +1,7 @@
 using System;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Server.DTOs;
-using Server.Entities;
+using Server.Entities.Basket;
 
 namespace Server.Extensions;
 
@@ -29,7 +30,15 @@ public static class BasketExtentions
                     QuantityInStock = item.Product.QuantityInStock,
                 },
 
-            }).ToList<BasketItemDto>()
+            }).ToList<BasketItemDto>(),
+            Discounts = basket.Discounts.Select(discount => new DiscountDto()
+            {
+                Type = discount.Type,
+                Amount = discount.Amount,
+            }).ToList<DiscountDto>(),
+            MerchandizeTotalPrice = basket.MerchandizeTotalPrice,
+            ShippingTotalPrice = basket.ShippingTotalPrice,
+            TotalPrice = basket.TotalPrice,
         }; 
     }
 }
