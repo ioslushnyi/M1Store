@@ -30,8 +30,11 @@ export const basketAPI = createApi({
             const existingItem = draft.items.find(
               (item) => item.productId === product.id
             );
-            if (existingItem) existingItem.quantity += quantity;
-            else draft.items.push(new Item(product, quantity));
+            if (existingItem) {
+              existingItem.quantity += quantity;
+              existingItem.price =
+                existingItem.basePrice * existingItem.quantity;
+            } else draft.items.push(new Item(product, quantity));
           })
         );
         try {
@@ -61,6 +64,9 @@ export const basketAPI = createApi({
             );
             if (itemIndex >= 0) {
               draft.items[itemIndex].quantity -= quantity;
+              draft.items[itemIndex].price =
+                draft.items[itemIndex].basePrice *
+                draft.items[itemIndex].quantity;
               if (draft.items[itemIndex].quantity <= 0) {
                 draft.items.splice(itemIndex, 1);
               }

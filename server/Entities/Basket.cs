@@ -18,12 +18,16 @@ public class Basket
         {
             Items.Add(new BasketItem()
             {
+                ProductId = product.Id,
                 Product = product,
-                Quantity = quantity
+                BasePrice = product.Price,
+                Quantity = quantity,
+                Price = product.Price * quantity
             });
         } else
         {
             existingItem.Quantity += quantity;
+            existingItem.Price = product.Price * existingItem.Quantity;
         }
     }
     public void RemoveItem(int productId, int quantity)

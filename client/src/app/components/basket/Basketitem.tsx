@@ -2,7 +2,7 @@ import { Box, Grid, IconButton, Paper, Typography } from "@mui/material";
 import type { Item } from "../../types/basket";
 import { Add, Close, Remove } from "@mui/icons-material";
 import {
-  //useAddItemToBasketMutation,
+  useAddItemToBasketMutation,
   useRemoveItemFromBasketMutation,
 } from "../../api/basketAPI";
 
@@ -10,7 +10,7 @@ type Props = {
   item: Item;
 };
 export default function Basketitem({ item }: Props) {
-  //const [addItemToBasket] = useAddItemToBasketMutation();
+  const [addItemToBasket] = useAddItemToBasketMutation();
   const [removeItemFromBasket] = useRemoveItemFromBasketMutation();
   return (
     <Paper
@@ -26,8 +26,8 @@ export default function Basketitem({ item }: Props) {
       <Box display="flex" alignItems="center">
         <Box
           component="img"
-          src={item.pictureUrl}
-          alt={item.name}
+          src={item.product.pictureUrl}
+          alt={item.product.name}
           sx={{
             width: 100,
             height: 100,
@@ -38,21 +38,24 @@ export default function Basketitem({ item }: Props) {
           }}
         />
         <Box display="flex" flexDirection="column" gap={1}>
-          <Typography variant="h6">{item.name}</Typography>
+          <Typography variant="h6">{item.product.name}</Typography>
 
           <Box display="flex" alignItems="center" gap={3}>
             <Typography sx={{ fontSize: "1.1rem" }}>
-              ${(item.price / 100).toFixed(2)} x {item.quantity}
+              ${(item.product.price / 100).toFixed(2)} x {item.quantity}
             </Typography>
             <Typography sx={{ fontSize: "1.1rem" }} color="secondary">
-              ${((item.price / 100) * item.quantity).toFixed(2)}
+              ${(item.price / 100).toFixed(2)}
             </Typography>
           </Box>
 
           <Grid container spacing={1} alignItems="center">
             <IconButton
               onClick={() =>
-                removeItemFromBasket({ productId: item.productId, quantity: 1 })
+                removeItemFromBasket({
+                  productId: item.productId,
+                  quantity: 1,
+                })
               }
               color="warning"
               size="small"
@@ -62,9 +65,9 @@ export default function Basketitem({ item }: Props) {
             </IconButton>
             <Typography variant="h6">{item.quantity}</Typography>
             <IconButton
-              //</Grid>onClick={() =>
-              //addItemToBasket({ product: item.productId, quantity: 1 })
-              //}
+              onClick={() =>
+                addItemToBasket({ product: item.product, quantity: 1 })
+              }
               color="success"
               size="small"
               sx={{ border: 1, borderRadius: 1, minWidth: 0 }}
