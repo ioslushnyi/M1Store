@@ -62,16 +62,6 @@ export const basketAPI = createApi({
                 "getBasket",
                 undefined,
                 (draft) => {
-                  if (!draft) {
-                    draft = {
-                      basketId: "",
-                      items: [],
-                      discounts: [],
-                      totalPrice: 0,
-                      merchandizeTotalPrice: 0,
-                      shippingTotalPrice: 0,
-                    };
-                  }
                   Object.assign(draft, updatedBasket);
                 }
               )
