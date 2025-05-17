@@ -10,7 +10,7 @@ import { formatPrice } from "../../utils/helpers";
 type Props = {
   item: Item;
 };
-export default function Basketitem({ item }: Props) {
+export default function BasketItem({ item }: Props) {
   const [addItemToBasket] = useAddItemToBasketMutation();
   const [removeItemFromBasket] = useRemoveItemFromBasketMutation();
   return (

@@ -62,7 +62,7 @@ public class Basket
 
     private void ApplyDiscounts()
     {
-        if (MerchandizeTotalPrice >= 10000) {
+        if (MerchandizeTotalPrice >= 100000) {
             ShippingTotalPrice = 0;
             Discounts.Add(new Discount()
             {

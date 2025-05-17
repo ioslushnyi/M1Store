@@ -7,13 +7,10 @@ import {
   Paper,
 } from "@mui/material";
 import { formatPrice } from "../../utils/helpers";
-import type { Basket } from "../../types/basket";
+import { useGetBasketQuery } from "../../api/basketAPI";
 
-type Props = {
-  basket: Basket;
-};
-export default function OrderSummary({ basket }: Props) {
-  //const { data: basket } = useGetBasketQuery();
+export default function OrderSummary() {
+  const { data: basket } = useGetBasketQuery();
   const totalPrice = basket && basket.totalPrice;
   const merchandizeTotalPrice = basket && basket.merchandizeTotalPrice;
   const deliveryFee = basket && basket.shippingTotalPrice;
@@ -41,7 +38,7 @@ export default function OrderSummary({ basket }: Props) {
           Order summary
         </Typography>
         <Typography variant="body2" sx={{ fontStyle: "italic" }}>
-          Orders over $100 qualify for free delivery!
+          Orders over $1000 qualify for free delivery!
         </Typography>
         <Box mt={2}>
           <Box display="flex" justifyContent="space-between" mb={1}>
