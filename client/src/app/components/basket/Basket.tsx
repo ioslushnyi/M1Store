@@ -2,8 +2,8 @@ import { Grid } from "@mui/material";
 import { useGetBasketQuery } from "../../api/basketAPI";
 import IsLoading from "../layout/IsLoading";
 import OrderSummary from "../shared/OrderSummary";
-import BasketItem from "./Basketitem";
 import EmptyBasket from "./EmptyBasket";
+import BasketItem from "./BasketItem";
 
 export default function Basket() {
   const { data: basket, isLoading } = useGetBasketQuery();

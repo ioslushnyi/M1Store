@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import { formatPrice } from "../../utils/helpers";
 import { useGetBasketQuery } from "../../api/basketAPI";
+import { Link } from "react-router";
 
 export default function OrderSummary() {
   const { data: basket } = useGetBasketQuery();
@@ -66,10 +67,19 @@ export default function OrderSummary() {
         </Box>
 
         <Box mt={2}>
-          <Button variant="contained" color="primary" fullWidth sx={{ mb: 1 }}>
+          <Button
+            component={Link}
+            to="/checkout"
+            variant="contained"
+            color="primary"
+            fullWidth
+            sx={{ mb: 1 }}
+          >
             Checkout
           </Button>
-          <Button fullWidth>Continue Shopping</Button>
+          <Button component={Link} to="/catalog" fullWidth>
+            Continue Shopping
+          </Button>
         </Box>
       </Paper>
 
