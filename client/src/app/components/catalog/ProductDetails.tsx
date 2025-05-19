@@ -47,11 +47,17 @@ export default function ProductDetails() {
   return (
     <Grid container spacing={6} maxWidth="md" sx={{ mx: "auto" }}>
       <Grid size={6}>
-        <img
-          src={product.pictureUrl}
-          alt={product.name}
-          style={{ width: "100%" }}
-        />
+        <Box sx={{ display: "flex", justifyContent: "end" }}>
+          <img
+            src={product.pictureUrl}
+            alt={product.name}
+            style={{
+              minWidth: "350px",
+              maxWidth: "400px",
+              maxHeight: "600px",
+            }}
+          />
+        </Box>
       </Grid>
       <Grid size={6}>
         <Typography variant="h3">{product.name}</Typography>
