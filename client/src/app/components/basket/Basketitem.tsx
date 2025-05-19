@@ -6,6 +6,7 @@ import {
   useRemoveItemFromBasketMutation,
 } from "../../api/basketAPI";
 import { formatPrice } from "../../utils/helpers";
+import { Link } from "react-router";
 
 type Props = {
   item: Item;
@@ -25,19 +26,21 @@ export default function BasketItem({ item }: Props) {
       }}
     >
       <Box display="flex" alignItems="center">
-        <Box
-          component="img"
-          src={item.product.pictureUrl}
-          alt={item.product.name}
-          sx={{
-            width: 100,
-            height: 100,
-            objectFit: "cover",
-            borderRadius: "4px",
-            mr: 8,
-            ml: 4,
-          }}
-        />
+        <Box sx={{ pr: 8, pl: 4 }}>
+          <Box component={Link} to={`/catalog/products/${item.productId}`}>
+            <Box
+              component="img"
+              src={item.product.pictureUrl}
+              alt={item.product.name}
+              sx={{
+                width: 100,
+                height: 100,
+                objectFit: "cover",
+                borderRadius: "4px",
+              }}
+            />
+          </Box>
+        </Box>
         <Box display="flex" flexDirection="column" gap={1}>
           <Typography variant="h6">{item.product.name}</Typography>
 

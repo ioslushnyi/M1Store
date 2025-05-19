@@ -44,6 +44,8 @@ export default function ProductDetails() {
     { label: "Quanity in stock", value: product.quantityInStock },
   ];
 
+  document.body.scrollTop = document.documentElement.scrollTop = 0;
+
   return (
     <Grid container spacing={6} maxWidth="md" sx={{ mx: "auto" }}>
       <Grid size={6}>
